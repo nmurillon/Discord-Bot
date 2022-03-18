@@ -4,6 +4,7 @@
   "description": "Bot for giving role to users",
   "main": "index.js",
   "scripts": {
+    "start": "node --trace-deprecation -r dotenv/config index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,6 +19,7 @@
   "homepage": "https://github.com/nmurillon/Discord-Bot#readme",
   "dependencies": {
     "discord.js": "^13.6.0",
-    "dotenv": "^16.0.0"
+    "dotenv": "^16.0.0",
+    "fs": "^0.0.1-security"
   }
 }
