@@ -7,7 +7,8 @@ const client = new Discord.Client({
         Discord.Intents.FLAGS.GUILDS,
         Discord.Intents.FLAGS.GUILD_MESSAGES,
         Discord.Intents.FLAGS.GUILD_MESSAGE_REACTIONS
-    ] 
+    ],
+    partials: ['MESSAGE', 'CHANNEL', 'REACTION'] 
 });
 
 client.commands = new Discord.Collection();
