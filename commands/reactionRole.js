@@ -1,7 +1,7 @@
 module.exports = {
     name: 'reactionrole',
     description: 'Add a role to a user after message reaction',
-    async execute(message, args, Discord, client) {
+    async execute(message, args, Discord, client, guildConfig) {
         /* Emojis associated to the roles */
         const carpetteEmoji = '👌🏻';
         const clAmieEmoji = '🤝';
