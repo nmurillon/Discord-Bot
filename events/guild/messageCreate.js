@@ -19,11 +19,14 @@ module.exports = async (client, Discord, message) => {
     if (!command) return message.channel.send('This command does not exist');
 
     const memberPermissions = message.member.permissionsIn(message.channel);
-    const permissionError = command.permissions.map (perm => {
+    
+    let permissionError = [];
+    
+    for (const perm of command.permissions) {
         if (!memberPermissions.has(perm)) {
-            return perm;
+            permissionError.push(perm);
         }
-    })
+    }
 
     if (permissionError.length) {
         return message.reply(`Missing permissions : \`${permissionError}\``)
