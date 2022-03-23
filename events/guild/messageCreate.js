@@ -18,6 +18,17 @@ module.exports = async (client, Discord, message) => {
 
     if (!command) return message.channel.send('This command does not exist');
 
+    const memberPermissions = message.member.permissionsIn(message.channel);
+    const permissionError = command.permissions.map (perm => {
+        if (!memberPermissions.has(perm)) {
+            return perm;
+        }
+    })
+
+    if (permissionError.length) {
+        return message.reply(`Missing permissions : \`${permissionError}\``)
+    }
+
     console.log(`call to '${cmd}' with following args : '${args}'`)
     try {
         command.execute(message, args, Discord, client, guildConfig);
