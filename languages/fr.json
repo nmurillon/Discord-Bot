@@ -1,0 +1,34 @@
+{
+    "commandExecutionError": "Une erreur est survenue lors de l'exécution de la commande",
+    "commandNotFound": "Cette commande n'existe pas",
+    "missingPermisions": "Permission(s) manquante(s) :",
+
+    "clear": {
+        "atLeastOne": "Vous devez supprimer au moins un message !",
+        "atMostHundred": "Désolé, je ne peux pas supprimer plus de 100 messages",
+        "nan": "L'argument fournit doit être un nombre !",
+        "noArg": "Entrer le nombre de message que vous voulez effacer, eg : !clear 5"
+    },
+
+    "language": {
+        "current": "Le bot répond en français !",
+        "notSupported": "n'est pas un langage supporté. Voici la liste des langages supportés actuellement :",
+        "updated": "La langue du bot a été changée !"
+    }, 
+
+    "prefix": {
+        "help": "Utilisaton de la commande `prefix` : `<prefix>prefix <newPrefix>` où <prefix> est le prefixe actuel (! par défaut) et <newPrefix> est le nouveau préfixe",
+        "noArg": "La commande `prefix` ne peut pas être utilisée sans arguments !",
+        "update": "Le préfixe pour l'utilisation des commandes a changé. Vous pouvez maintenant appeler une commande avec",
+        "updateError": "Le préfixe doit être composé d'un seul mot ! Vous avez essayé d'utiliser le préfixe suivant :"
+    },
+
+    "reactionrole": {
+        "embedTitle": "Choisissez votre rôle",
+        "embedDescription": "Choisir un rôle vous permet d'avoir accès aux bons salons !\n\n",
+        "noRoleChannel": "Il n'y a aucun salon configuré pour le moment",
+        "roleChannel": "Le bot attribuera les rôles grâces aux réaction dans",
+        "roleChannelError": "n'est pas un salon existant sur ce serveur !",
+        "roleChannelUpdate": "Le bot attribuera maintenant les rôles dans"
+    }   
+}

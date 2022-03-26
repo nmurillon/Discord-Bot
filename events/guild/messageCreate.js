@@ -11,12 +11,13 @@ module.exports = async (client, Discord, message) => {
 
     if(message.author.bot || !message.content.startsWith(guildConfig.prefix)) return;
 
+    const language = client.languages.get(guildConfig.language);
     const args = message.content.slice(guildConfig.prefix.length).split(/\s+/);
     const cmd = args.shift().toLowerCase();
 
     const command = client.commands.get(cmd);
 
-    if (!command) return message.channel.send('This command does not exist');
+    if (!command) return message.channel.send(language.commandNotFound);
 
     const memberPermissions = message.member.permissionsIn(message.channel);
     
@@ -29,14 +30,14 @@ module.exports = async (client, Discord, message) => {
     }
 
     if (permissionError.length) {
-        return message.reply(`Missing permissions : \`${permissionError}\``)
+        return message.reply(`${language.missingPermissions} \`${permissionError}\``)
     }
 
     console.log(`call to '${cmd}' with following args : '${args}'`)
     try {
-        command.execute(message, args, Discord, client, guildConfig);
+        command.execute(message, args, Discord, client, guildConfig, language);
     } catch (err) {
-        message.reply(`There was an error executing this command`);
+        message.reply(language.commandExecutionError);
         console.error(err);
     }
 }

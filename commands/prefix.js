@@ -3,17 +3,16 @@ module.exports = {
     aliases: ['pref'],
     description: 'Command allowing to set the prefix for the commands',
     permissions: ['MANAGE_GUILD'],
-    help : 'Prefix command usage : `<prefix>prefix <newPrefix>` where <prefix> is the current prefix (! by default) and <newPrefix> is the prefix you want',
-    async execute(message, args, Discord, client, guildConfig) {
+    async execute(message, args, Discord, client, guildConfig, language) {
         /* TODO: display help for this command */
-        if (!args.length) return message.reply(`You can't use the prefix command without arguments !\n${this.help}`);
+        if (!args.length) return message.reply(`${language.prefix.noArg}\n${language.prefix.help}`);
 
         if (args.length === 1) {
             guildConfig.prefix = args[0]
             await guildConfig.save();
-            message.reply(`The command prefix has changed : you can now call a command with \`${guildConfig.prefix}\``);
+            message.reply(`${language.prefix.update} \`${guildConfig.prefix}\``);
         } else {
-            message.reply(`The prefix must be a one word string ! you tried to give the following one : '${args.join(' ')}'`);
+            message.reply(`${language.prefix.updateError} \`${args.join(' ')}\``);
         }
     }
 }

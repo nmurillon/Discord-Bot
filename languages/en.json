@@ -1,0 +1,34 @@
+{
+    "commandExecutionError": "There was an error executing this command",
+    "commandNotFound": "This command does not exist",
+    "missingPermisions": "Missing permissions :",
+
+    "clear": {
+        "atLeastOne": "Sorry but you must at least delete one message !",
+        "atMostHundred": "Sorry but I can't clean more than 100 messages",
+        "nan": "Please enter a number as an argument !",
+        "noArg": "Please enter the amount of messages you want to clear, eg : !clear 5"
+    },
+
+    "language": {
+        "current": "The bot answers in English !",
+        "notSupported": "can not be handled at the moment. Here is the list of supported languages :",
+        "updated": "The bot's language has been changed !"
+    },  
+
+    "prefix": {
+        "help": "`prefix` command usage : `<prefix>prefix <newPrefix>` where <prefix> is the current prefix (! by default) and <newPrefix> is the prefix you want",
+        "noArg": "You can't use the `prefix` command without arguments !",
+        "update": "The command prefix has changed : you can now call a command with",
+        "updateError": "The prefix must be a one word string ! You tried to give the following one :"
+    },
+
+    "reactionrole": {
+        "embedTitle": "Choose your role",
+        "embedDescription": "Choosing a role allows you to get access to the right channels !\n\n",
+        "noRoleChannel": "There are no channel configured at the moment",
+        "roleChannel": "The bot will assign roles on message reactions in",
+        "roleChannelError": "is not an existing channel on this server !",
+        "roleChannelUpdate": "The bot will now listen to reactions in"
+    }   
+}
