@@ -3,6 +3,9 @@ module.exports = {
     aliases: ['cl', 'delete'],
     description: 'clear an amount of messages from a channel',
     permissions: ['MANAGE_MESSAGES'],
+    getHelp(guildConfig, language) {
+        return language.clear.help.replace('<prefix>', guildConfig.prefix);
+    },
     async execute(message, args, Discord, client, guildConfig, language) {
 
         if (!args[0]) return message.reply(language.clear.noArg);

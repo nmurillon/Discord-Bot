@@ -2,6 +2,9 @@ module.exports = {
     name: 'reactionrole',
     description: 'Add a role to a user after message reaction',
     permissions: ['MANAGE_ROLES', 'MANAGE_GUILD'],
+    getHelp(guildConfig, language) {
+        return language.reactionrole.help;
+    },
     async execute(message, args, Discord, client, guildConfig, language) {
         /* Emojis associated to the roles */
 
@@ -25,23 +28,25 @@ module.exports = {
             const subcommand = args.shift().toLowerCase();
 
             if (subcommand === 'channel') {
+                let channel;
                 if (!args.length) {
-                    if(guildConfig.roleChannel === '') {
-                        message.channel.send(language.reactionrole.noRoleChannel);
-                    } else {
-                        message.channel.send(`${language.reactionrole.roleChannel} ${message.guild.channels.cache.find(c => c.id === guildConfig.roleChannel).toString()}`);
-                    }
-                } else {
-                    let channel = message.guild.channels.cache.find(c => c.name === args[0]);
-    
-                    if (channel) {
-                        guildConfig.roleChannel = channel.id;
-                        await guildConfig.save();
-                        message.channel.send(`${language.reactionrole.roleChannelUpdate} ${channel.toString()}`);
-                    } else {
-                        message.reply(`\`${args[0]}\` ${language.reactionrole.roleChannelError}`);
-                    } 
+                    if(guildConfig.roleChannel === '') return message.channel.send(language.reactionrole.noRoleChannel);
+                    
+                    channel = message.guild.channels.cache.find(c => c.id === guildConfig.roleChannel);
+                    return message.channel.send(language.reactionrole.roleChannel.replace('<channel>', channel.toString()));
+                    
                 }
+
+                channel = message.guild.channels.cache.find(c => c.name === args[0]);
+
+                if (channel) {
+                    guildConfig.roleChannel = channel.id;
+                    await guildConfig.save();
+                    message.channel.send(language.reactionrole.roleChannelUpdate.replace('<channel>', channel.toString()));
+                } else {
+                    message.reply(language.reactionrole.roleChannelError.replace('<channel>', `\`${args[0]}\``));
+                } 
+                
             }
         }
         

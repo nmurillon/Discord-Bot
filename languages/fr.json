@@ -1,34 +1,54 @@
 {
     "commandExecutionError": "Une erreur est survenue lors de l'exécution de la commande",
-    "commandNotFound": "Cette commande n'existe pas",
-    "missingPermisions": "Permission(s) manquante(s) :",
+    "commandNotFound": "La commande `<command>` n'existe pas",
+    "missingPermisions": "Permission(s) manquante(s) : <permissions>",
 
     "clear": {
+        "description": "Supprime un montant donné de message dans un salon textuel",
+        "help": "",
         "atLeastOne": "Vous devez supprimer au moins un message !",
         "atMostHundred": "Désolé, je ne peux pas supprimer plus de 100 messages",
         "nan": "L'argument fournit doit être un nombre !",
         "noArg": "Entrer le nombre de message que vous voulez effacer, eg : !clear 5"
     },
 
+    "help": {
+        "description": "",
+        "help": "",
+        "embedTitle": "Liste des commandes disponibles",
+        "embedDescription": "Utiliser `<prefix>help <command>` pour afficher l'aide de la commande `<command>`\n\n",
+        "embedCommandTitle": "Aide de la commande `<command>`"
+    },
+
     "language": {
+        "description": "Commande permettant de configurer la langue du bot",
+        "help": "",
         "current": "Le bot répond en français !",
-        "notSupported": "n'est pas un langage supporté. Voici la liste des langages supportés actuellement :",
+        "notSupported": "**<language>** n'est pas un langage supporté. Voici la liste des langages supportés actuellement.\n<list>",
         "updated": "La langue du bot a été changée !"
     }, 
 
+    "ping": {
+        "description": "Envoie d'un ping au bot. Il répond pong",
+        "help": ""
+    },
+
     "prefix": {
-        "help": "Utilisaton de la commande `prefix` : `<prefix>prefix <newPrefix>` où <prefix> est le prefixe actuel (! par défaut) et <newPrefix> est le nouveau préfixe",
+        "description": "Commande permettant de configurer le préfixe pour l'utilisation de commandes",
+        "help": "Utilisaton de la commande `prefix` : `<prefix>prefix <newPrefix>` où <newPrefix> est le nouveau préfixe qui sera utilisé pour les commandes du bot",
         "noArg": "La commande `prefix` ne peut pas être utilisée sans arguments !",
-        "update": "Le préfixe pour l'utilisation des commandes a changé. Vous pouvez maintenant appeler une commande avec",
-        "updateError": "Le préfixe doit être composé d'un seul mot ! Vous avez essayé d'utiliser le préfixe suivant :"
+        "update": "Le préfixe pour l'utilisation des commandes a changé. Vous pouvez maintenant appeler une commande avec <prefix>",
+        "updateError": "Le préfixe doit être composé d'un seul mot ! Vous avez essayé d'utiliser le préfixe suivant : <prefix>"
     },
 
     "reactionrole": {
+        "description": "Gère les rôles des utilisateurs après réactions sur un message donné",
+        "help": "",
         "embedTitle": "Choisissez votre rôle",
         "embedDescription": "Choisir un rôle vous permet d'avoir accès aux bons salons !\n\n",
         "noRoleChannel": "Il n'y a aucun salon configuré pour le moment",
-        "roleChannel": "Le bot attribuera les rôles grâces aux réaction dans",
-        "roleChannelError": "n'est pas un salon existant sur ce serveur !",
-        "roleChannelUpdate": "Le bot attribuera maintenant les rôles dans"
+        "roleChannel": "Le bot attribuera les rôles grâces aux réactions dans <channel>",
+        "roleChannelError": "`<channel>` n'est pas un salon existant sur ce serveur !",
+        "roleChannelUpdate": "Le bot attribuera maintenant les rôles dans <channel>"
     }   
 }

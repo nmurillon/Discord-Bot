@@ -17,7 +17,7 @@ module.exports = async (client, Discord, message) => {
 
     const command = client.commands.get(cmd);
 
-    if (!command) return message.channel.send(language.commandNotFound);
+    if (!command) return message.channel.send(language.commandNotFound.replace('<command>', cmd));
 
     const memberPermissions = message.member.permissionsIn(message.channel);
     
@@ -30,14 +30,14 @@ module.exports = async (client, Discord, message) => {
     }
 
     if (permissionError.length) {
-        return message.reply(`${language.missingPermissions} \`${permissionError}\``)
+        return message.reply(language.missingPermissions.replace('<permissions>', `\`${permissionError}\``));
     }
 
     console.log(`call to '${cmd}' with following args : '${args}'`)
     try {
-        command.execute(message, args, Discord, client, guildConfig, language);
+        await command.execute(message, args, Discord, client, guildConfig, language);
     } catch (err) {
-        message.reply(language.commandExecutionError);
         console.error(err);
+        message.reply(language.commandExecutionError);
     }
 }
