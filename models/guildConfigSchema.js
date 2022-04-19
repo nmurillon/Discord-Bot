@@ -5,7 +5,7 @@ const guildConfigSchema = new mongoose.Schema({
     prefix: { type: String, default: '!' },
     language: { type: String, default: 'en' },
     roleChannel: { type: String, default: '' },
-    roleAssign: { type: Object, default: {} }
+    roleAssign: { type: Map, of: Object, default: {} }
 })
 
 const model = mongoose.model('guildConfigModels', guildConfigSchema);

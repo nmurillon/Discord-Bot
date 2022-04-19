@@ -6,7 +6,7 @@ module.exports = {
     description: 'Command allowing to set the prefered language',
     permissions: ['MANAGE_GUILD'],
     getHelp(guildConfig, language) {
-        return language.language;
+        return language.language.help;
     },
     async execute(message, args, Discord, client, guildConfig, language) {
 

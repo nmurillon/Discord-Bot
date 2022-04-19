@@ -1,7 +1,7 @@
 {
     "commandExecutionError": "Une erreur est survenue lors de l'exécution de la commande",
     "commandNotFound": "La commande `<command>` n'existe pas",
-    "missingPermisions": "Permission(s) manquante(s) : <permissions>",
+    "missingPermissions": "Permission(s) manquante(s) : <permissions>",
 
     "clear": {
         "description": "Supprime un montant donné de message dans un salon textuel",
@@ -49,6 +49,10 @@
         "noRoleChannel": "Il n'y a aucun salon configuré pour le moment",
         "roleChannel": "Le bot attribuera les rôles grâces aux réactions dans <channel>",
         "roleChannelError": "`<channel>` n'est pas un salon existant sur ce serveur !",
-        "roleChannelUpdate": "Le bot attribuera maintenant les rôles dans <channel>"
+        "roleChannelUpdate": "Le bot attribuera maintenant les rôles dans <channel>",
+        "noAssignableRole": "Aucun rôle ne peut être attribué par le bot actuellement",
+        "embedTitleAssignableRole": "Liste des rôles que le bot peut attribuer",
+        "embedDescriptionAssignableRole": "Le bot peut attribuer les rôles suivants :\n",
+        "roleAssignArgError": "Attention ! Vous devez fournir le nom du role puis l'émoji qui permettra d'attribuer ce rôle."
     }   
 }

@@ -1,7 +1,7 @@
 {
     "commandExecutionError": "There was an error executing this command",
     "commandNotFound": "The command `<command>` does not exist",
-    "missingPermisions": "Missing permissions: <permissions>",
+    "missingPermissions": "Missing permissions: <permissions>",
 
     "clear": {
         "description": "Clear an amount of messages from a channel",
@@ -49,6 +49,10 @@
         "noRoleChannel": "There are no channel configured at the moment",
         "roleChannel": "The bot will assign roles on message reactions in <channel>",
         "roleChannelError": "`<channel>` is not an existing channel on this server !",
-        "roleChannelUpdate": "The bot will now listen to reactions in <channel>"
+        "roleChannelUpdate": "The bot will now listen to reactions in <channel>",
+        "noAssignableRole": "No role can be assigned by the bot at the moment",
+        "embedTitleAssignableRole": "List of roles the bot can assign",
+        "embedDescriptionAssignableRole": "The bot can assign the following roles :\n",
+        "roleAssignArgError": "Caution ! You must give the role's name and then the emoji that will allow to assign this role."
     }   
 }
