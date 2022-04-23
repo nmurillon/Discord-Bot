@@ -38,6 +38,9 @@ module.exports = async (client, Discord, message) => {
         await command.execute(message, args, Discord, client, guildConfig, language);
     } catch (err) {
         console.error(err);
-        message.reply(language.commandExecutionError);
+        const embed = new Discord.MessageEmbed();
+        embed.setColor(process.env.COLOR_ERROR)
+            .setDescription(language.commandExecutionError);
+        await message.channel.send({embeds: [embed]});
     }
 }

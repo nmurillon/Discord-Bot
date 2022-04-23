@@ -13,7 +13,7 @@ module.exports = {
             let description = language.reactionrole.embedDescription;
     
             let embed = new Discord.MessageEmbed()
-                .setColor('#e42642')
+                .setColor(process.env.COLOR_SUCCESS)
                 .setTitle(language.reactionrole.embedTitle);
 
             guildConfig.roleAssign.forEach(
@@ -57,7 +57,7 @@ module.exports = {
                     
                     let description = language.reactionrole.embedDescriptionAssignableRole;
                     let embed = new Discord.MessageEmbed()
-                    .setColor('#e42642')
+                    .setColor(process.env.COLOR_SUCCESS)
                     .setTitle(language.reactionrole.embedTitleAssignableRole);
                     console.log(guildConfig)
 

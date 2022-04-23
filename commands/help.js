@@ -5,9 +5,9 @@ module.exports = {
         return language.help.help;
     },
     async execute(message, args, Discord, client, guildConfig, language) {
-
+        
         const embed = new Discord.MessageEmbed();
-        embed.setColor('#41f097');
+        embed.setColor(process.env.COLOR_HELP);
         if (!args.length) {
             let description = language.help.embedDescription.replace('<prefix>', guildConfig.prefix);
 

@@ -16,7 +16,7 @@ module.exports = {
         if (!client.languages.get(new_language)) {
             let existing = '';
             const embed = new Discord.MessageEmbed()
-                .setColor("#FFFFFF");
+                .setColor(process.env.COLOR_SUCCESS);
             for (const lang of client.languages.keys()) {
                 existing += `- **${lang}**\n`;
             }

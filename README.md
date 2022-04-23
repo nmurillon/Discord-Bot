@@ -8,6 +8,3 @@ If you want to invite the bot :
 ## TODO LIST
 
 Alwaysdata
-
-Error handling for messageReaction (what if we want to add/remove a role that no longer exists ?)
-
