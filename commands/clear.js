@@ -11,9 +11,19 @@ module.exports = {
         if (!args[0]) return message.reply(language.clear.noArg);
         if (isNaN(args[0])) return message.reply(language.clear.nan);
 
-        if (args[0] > 100) return message.reply(language.clear.atMostHundred);
-        if (args[0] < 1) return message.reply(language.clear.atLeastOne);
+        const toDelete = parseInt(args[0]) + 1;
 
-        message.channel.bulkDelete(args[0]).catch(console.error);
+        if (toDelete > 100) return message.reply(language.clear.atMostHundred);
+        if (toDelete < 1) return message.reply(language.clear.atLeastOne);
+
+        const deleted = await message.channel.bulkDelete(toDelete, true).catch(console.error);
+        const remaining = toDelete - deleted.size;
+        if (remaining) {
+            message.channel.messages.fetch({ limit: remaining }).then(
+                messages => {
+                    messages.forEach(msg => msg.delete());
+                }
+            )
+        }
     }
 }

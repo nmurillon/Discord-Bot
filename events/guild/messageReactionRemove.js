@@ -5,11 +5,11 @@ module.exports = async (client, Discord, reaction, user) => {
     if (reaction.partial) await reaction.fetch();
     if (user.bot) return;
 
-    const guildConfig = await guildConfigModel.findOne({ guildID: reaction.message.guild.id});
+    const guildConfig = await guildConfigModel.findOne({guildID: reaction.message.guild.id});
     if (reaction.message.channel.id !== guildConfig.roleChannel) return;
 
     if (guildConfig.roleAssign.has(reaction.emoji.name)) {
         const role = await reaction.message.guild.roles.cache.find(r => r.id === guildConfig.roleAssign.get(reaction.emoji.name));
-        await reaction.message.guild.members.cache.get(user.id).roles.remove(role);
+        if (role) await reaction.message.guild.members.cache.get(user.id).roles.remove(role);
     }
 }
