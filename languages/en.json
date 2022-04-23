@@ -1,0 +1,58 @@
+{
+    "commandExecutionError": "There was an error executing this command",
+    "commandNotFound": "The command `<command>` does not exist",
+    "missingPermissions": "Missing permissions: <permissions>",
+
+    "clear": {
+        "description": "Clear an amount of messages from a channel",
+        "help": "",
+        "atLeastOne": "Sorry but you must at least delete one message !",
+        "atMostHundred": "Sorry but I can't clean more than 100 messages",
+        "nan": "Please enter a number as an argument !",
+        "noArg": "Please enter the amount of messages you want to clear, eg : !clear 5"
+    },
+
+    "help": {
+        "description": "",
+        "help": "",
+        "embedTitle": "List of available commands",
+        "embedDescription": "Use `<prefix>help <command>` to display help for the command `<command>`\n\n",
+        "embedCommandTitle": "Help for `<command>`"
+    },
+
+    "language": {
+        "description": "Command allowing to set the bot's prefered language",
+        "help": "",
+        "current": "The bot answers in English !",
+        "notSupported": "**<language>** can not be handled at the moment. Here is the list of supported languages:\n<list>",
+        "updated": "The bot's language has been changed !"
+    },  
+
+    "ping": {
+        "description": "ping command, responds with pong",
+        "help": ""
+    },
+
+    "prefix": {
+        "description": "Command allowing to set the prefix for the commands",
+        "help": "`prefix` command usage : `<prefix>prefix <newPrefix>` where <newPrefix> is the prefix that will be used to call bot's commands",
+        "noArg": "You can't use the `prefix` command without arguments !",
+        "update": "The command prefix has changed : you can now call a command with <prefix>",
+        "updateError": "The prefix must be a one word string ! You tried to give the following one : <prefix>"
+    },
+
+    "reactionrole": {
+        "description": "Add a role to a user after message reaction",
+        "help": "",
+        "embedTitle": "Choose your role",
+        "embedDescription": "Choosing a role allows you to get access to the right channels !\n\n",
+        "noRoleChannel": "There are no channel configured at the moment",
+        "roleChannel": "The bot will assign roles on message reactions in <channel>",
+        "roleChannelError": "`<channel>` is not an existing channel on this server !",
+        "roleChannelUpdate": "The bot will now listen to reactions in <channel>",
+        "noAssignableRole": "No role can be assigned by the bot at the moment",
+        "embedTitleAssignableRole": "List of roles the bot can assign",
+        "embedDescriptionAssignableRole": "The bot can assign the following roles :\n",
+        "roleAssignArgError": "Caution ! You must give the role's name and then the emoji that will allow to assign this role."
+    }   
+}

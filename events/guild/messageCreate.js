@@ -11,12 +11,13 @@ module.exports = async (client, Discord, message) => {
 
     if(message.author.bot || !message.content.startsWith(guildConfig.prefix)) return;
 
+    const language = client.languages.get(guildConfig.language);
     const args = message.content.slice(guildConfig.prefix.length).split(/\s+/);
     const cmd = args.shift().toLowerCase();
 
     const command = client.commands.get(cmd);
 
-    if (!command) return message.channel.send('This command does not exist');
+    if (!command) return message.channel.send(language.commandNotFound.replace('<command>', cmd));
 
     const memberPermissions = message.member.permissionsIn(message.channel);
     
@@ -29,14 +30,17 @@ module.exports = async (client, Discord, message) => {
     }
 
     if (permissionError.length) {
-        return message.reply(`Missing permissions : \`${permissionError}\``)
+        return message.reply(language.missingPermissions.replace('<permissions>', `\`${permissionError}\``));
     }
 
     console.log(`call to '${cmd}' with following args : '${args}'`)
     try {
-        command.execute(message, args, Discord, client, guildConfig);
+        await command.execute(message, args, Discord, client, guildConfig, language);
     } catch (err) {
-        message.reply(`There was an error executing this command`);
         console.error(err);
+        const embed = new Discord.MessageEmbed();
+        embed.setColor(process.env.COLOR_ERROR)
+            .setDescription(language.commandExecutionError);
+        await message.channel.send({embeds: [embed]});
     }
 }

@@ -8,6 +8,7 @@ module.exports = (client, Discord) => {
 
         if (command.name) {
             client.commands.set(command.name, command);
+            console.log(`Registering command ${command.name}`);
         } else {
             continue;
         }
