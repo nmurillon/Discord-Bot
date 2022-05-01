@@ -1,7 +1,7 @@
 const { Guild } = require('discord.js');
 const guildProfileModel = require('../../models/guildConfigSchema')
 
-module.exports = async (client, Discord, guild) => {
+module.exports = async (_client, _Discord, guild) => {
     let guildConfig;
     try {
         guildConfig = await guildProfileModel.findOne({ guildID: guild.id });

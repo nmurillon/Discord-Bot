@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node --trace-deprecation -r dotenv/config index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,8 @@
     "dotenv": "^16.0.0",
     "fs": "^0.0.1-security",
     "mongoose": "^6.2.7"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1"
   }
 }

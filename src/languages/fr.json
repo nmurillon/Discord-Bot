@@ -1,7 +1,7 @@
 {
     "commandExecutionError": "Une erreur est survenue lors de l'exécution de la commande",
     "commandNotFound": "La commande `<command>` n'existe pas",
-    "missingPermissions": "Permission(s) manquante(s) : <permissions>",
+    "missingPermissions": "Permission(s) manquante(s) : `<permissions>`",
 
     "clear": {
         "description": "Supprime un montant donné de message dans un salon textuel",
@@ -37,8 +37,8 @@
         "description": "Commande permettant de configurer le préfixe pour l'utilisation de commandes",
         "help": "Utilisaton de la commande `prefix` : `<prefix>prefix <newPrefix>` où <newPrefix> est le nouveau préfixe qui sera utilisé pour les commandes du bot",
         "noArg": "La commande `prefix` ne peut pas être utilisée sans arguments !",
-        "update": "Le préfixe pour l'utilisation des commandes a changé. Vous pouvez maintenant appeler une commande avec <prefix>",
-        "updateError": "Le préfixe doit être composé d'un seul mot ! Vous avez essayé d'utiliser le préfixe suivant : <prefix>"
+        "update": "Le préfixe pour l'utilisation des commandes a changé. Vous pouvez maintenant appeler une commande avec `<prefix>`",
+        "updateError": "Le préfixe doit être composé d'un seul mot ! Vous avez essayé d'utiliser le préfixe suivant : `<prefix>`"
     },
 
     "reactionrole": {

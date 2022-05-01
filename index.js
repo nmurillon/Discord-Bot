@@ -14,7 +14,7 @@ const client = new Discord.Client({
 client.commands = new Discord.Collection();
 client.languages = new Discord.Collection();
 
-['command_handler', 'event_handler', 'language_handler'].forEach(handler => require(`./handlers/${handler}.js`)(client, Discord));
+['command_handler', 'event_handler', 'language_handler'].forEach(handler => require(`./src/handlers/${handler}.js`)(client, Discord));
 
 mongoose.connect(process.env.MONGO_SRV).then(() => {
     console.log('Succesfully connected to the database');

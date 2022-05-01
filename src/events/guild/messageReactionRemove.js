@@ -1,6 +1,6 @@
 const guildConfigModel = require('../../models/guildConfigSchema');
 
-module.exports = async (client, Discord, reaction, user) => {
+module.exports = async (_client, _Discord, reaction, user) => {
     if (reaction.message.partial) await reaction.message.fetch();
     if (reaction.partial) await reaction.fetch();
     if (user.bot) return;

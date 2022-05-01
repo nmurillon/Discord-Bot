@@ -30,7 +30,7 @@ module.exports = async (client, Discord, message) => {
     }
 
     if (permissionError.length) {
-        return message.reply(language.missingPermissions.replace('<permissions>', `\`${permissionError}\``));
+        return message.reply(language.missingPermissions.replace('<permissions>', permissionError));
     }
 
     console.log(`call to '${cmd}' with following args : '${args}'`)

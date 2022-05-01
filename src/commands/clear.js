@@ -6,7 +6,7 @@ module.exports = {
     getHelp(guildConfig, language) {
         return language.clear.help.replace('<prefix>', guildConfig.prefix);
     },
-    async execute(message, args, Discord, client, guildConfig, language) {
+    async execute(message, args, _Discord, _client, _guildConfig, language) {
 
         if (!args[0]) return message.reply(language.clear.noArg);
         if (isNaN(args[0])) return message.reply(language.clear.nan);
