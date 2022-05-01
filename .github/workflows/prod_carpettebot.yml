@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'carpetteBot'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3692A37C6BE649D092D1B1B26BAC555E }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3955089A149A456BAF7D59CF82674DAF }}
           package: .
