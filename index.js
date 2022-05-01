@@ -1,5 +1,7 @@
 const Discord = require('discord.js');
 const mongoose = require('mongoose');
+const express = require('express')
+const app = express()
 
 /* A bot is a client */
 const client = new Discord.Client({ 
@@ -23,3 +25,10 @@ mongoose.connect(process.env.MONGO_SRV).then(() => {
 });
 
 client.login(process.env.TOKEN);
+
+/* Usefull for Azure App servcices, it needs something listening on port 8080*/
+app.get('/', function (req, res) {
+    res.send('hello world')
+  })
+  
+  app.listen(8080)
