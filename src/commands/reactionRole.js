@@ -59,7 +59,6 @@ module.exports = {
                     let embed = new Discord.MessageEmbed()
                     .setColor(process.env.COLOR_SUCCESS)
                     .setTitle(language.reactionrole.embedTitleAssignableRole);
-                    console.log(guildConfig)
 
                     guildConfig.roleAssign.forEach( (roleId, _emoji) => {
                         const role = message.guild.roles.cache.find(r => r.id === roleId);
