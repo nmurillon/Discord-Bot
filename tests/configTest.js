@@ -7,8 +7,10 @@ const guildConfigModel = require('../src/models/guildConfigSchema');
 client.commands = new Collection();
 client.languages = new Collection();
 
+/* Load all the commands */
 ['command_handler', 'event_handler', 'language_handler'].forEach(handler => require(`../src/handlers/${handler}.js`)(client, Discord));
 
+/* Mock of a guild config */
 let guildConfig = {
     guildID: '',
     prefix: '!',
@@ -22,6 +24,10 @@ let guildConfig = {
 
 guildConfigModel.findOne.mockImplementation(() => guildConfig);
 
+/**
+ * Mock of a discord Message
+ * Jest mock functions only, not attributes
+ */ 
 const mockMessage = (content, perms = [Permissions.FLAGS.MANAGE_MESSAGES, Permissions.FLAGS.MANAGE_GUILD, Permissions.FLAGS.MANAGE_ROLES]) => {
     const message = new Discord.Message();
     message.content = content;
