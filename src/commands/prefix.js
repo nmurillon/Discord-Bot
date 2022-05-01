@@ -6,15 +6,15 @@ module.exports = {
     getHelp(guildConfig, language) {
         return language.prefix.help.replace('<prefix>', guildConfig.prefix);
     },
-    async execute(message, args, Discord, client, guildConfig, language) {
+    async execute(message, args, _Discord, _client, guildConfig, language) {
         if (!args.length) return message.reply(`${language.prefix.noArg}\n${language.prefix.help}`);
 
         if (args.length === 1) {
             guildConfig.prefix = args[0]
             await guildConfig.save();
-            message.reply(language.prefix.update.replace('<prefix>', `\`${guildConfig.prefix}\``));
+            message.reply(language.prefix.update.replace('<prefix>', guildConfig.prefix));
         } else {
-            message.reply(language.prefix.updateError.replace('<prefix>', `\`${args.join(' ')}\``));
+            message.reply(language.prefix.updateError.replace('<prefix>', args.join(' ')));
         }
     }
 }

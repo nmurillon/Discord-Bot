@@ -1,7 +1,7 @@
 {
     "commandExecutionError": "There was an error executing this command",
     "commandNotFound": "The command `<command>` does not exist",
-    "missingPermissions": "Missing permissions: <permissions>",
+    "missingPermissions": "Missing permissions: `<permissions>`",
 
     "clear": {
         "description": "Clear an amount of messages from a channel",
@@ -37,8 +37,8 @@
         "description": "Command allowing to set the prefix for the commands",
         "help": "`prefix` command usage : `<prefix>prefix <newPrefix>` where <newPrefix> is the prefix that will be used to call bot's commands",
         "noArg": "You can't use the `prefix` command without arguments !",
-        "update": "The command prefix has changed : you can now call a command with <prefix>",
-        "updateError": "The prefix must be a one word string ! You tried to give the following one : <prefix>"
+        "update": "The command prefix has changed : you can now call a command with `<prefix>`",
+        "updateError": "The prefix must be a one word string ! You tried to give the following one : `<prefix>`"
     },
 
     "reactionrole": {

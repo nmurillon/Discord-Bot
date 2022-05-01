@@ -1,7 +1,7 @@
 module.exports = {
     name: 'help',
     permissions: [],
-    getHelp(guildConfig, language) {
+    getHelp(_guildConfig, language) {
         return language.help.help;
     },
     async execute(message, args, Discord, client, guildConfig, language) {

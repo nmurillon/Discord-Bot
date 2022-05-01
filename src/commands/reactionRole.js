@@ -2,7 +2,7 @@ module.exports = {
     name: 'reactionrole',
     description: 'Add a role to a user after message reaction',
     permissions: ['MANAGE_ROLES', 'MANAGE_GUILD'],
-    getHelp(guildConfig, language) {
+    getHelp(_guildConfig, language) {
         return language.reactionrole.help;
     },
     async execute(message, args, Discord, client, guildConfig, language) {
@@ -50,7 +50,7 @@ module.exports = {
                     return message.channel.send(language.reactionrole.roleChannelUpdate.replace('<channel>', channel.toString()));
                 } 
                 
-                message.reply(language.reactionrole.roleChannelError.replace('<channel>', `\`${args[0]}\``));
+                message.reply(language.reactionrole.roleChannelError.replace('<channel>', args[0]));
             } else if (subcommand === '--role') {
                 if (!args.length) {
                     if (!guildConfig.roleAssign.size) return message.reply(language.reactionrole.noAssignableRole); 
@@ -59,9 +59,8 @@ module.exports = {
                     let embed = new Discord.MessageEmbed()
                     .setColor(process.env.COLOR_SUCCESS)
                     .setTitle(language.reactionrole.embedTitleAssignableRole);
-                    console.log(guildConfig)
 
-                    guildConfig.roleAssign.forEach( (roleId, emoji) => {
+                    guildConfig.roleAssign.forEach( (roleId, _emoji) => {
                         const role = message.guild.roles.cache.find(r => r.id === roleId);
                         description += `- ${role}\n`;
                     })
