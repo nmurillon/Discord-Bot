@@ -24,6 +24,7 @@ jobs:
       - name: npm install, build, and test
         run: |
           npm install
+          echo ${{ secrets.PROD_ENV_VARS }} | base64 --decode > .env.prod
           npm run build --if-present
           npm run test --if-present
 
