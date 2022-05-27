@@ -1,6 +1,6 @@
 jest.mock('discord.js');
 const Discord = require('discord.js'); 
-const { Collection, Permissions } = jest.requireActual('discord.js');
+const { Collection, Permissions, MessageEmbed } = jest.requireActual('discord.js');
 const client = new Discord.Client();
 jest.mock('../src/models/guildConfigSchema')
 const guildConfigModel = require('../src/models/guildConfigSchema');
@@ -17,7 +17,9 @@ let guildConfig = {
     language: 'en',
     roleChannel: '' ,
     roleAssign: { 
-        
+        forEach: jest.fn(() => ['']),
+        keys: jest.fn(() => ['']),
+        entries: jest.fn(() => [['','']])
     },
     save: () => { return }
 }
@@ -36,15 +38,26 @@ const mockMessage = (content, perms = [Permissions.FLAGS.MANAGE_MESSAGES, Permis
     message.author.bot = false;
     message.guild = new Discord.Guild();
     message.guild.id = 0;
+    message.guild.channels = {
+        cache: {
+            find: jest.fn(id => 'get-role')
+        }
+    }
     message.member.permissionsIn = jest.fn(_channel => {
         const permissions = new Permissions();
         perms.forEach(p => permissions.add(p))
         return permissions;
     })
     message.channel = new Discord.TextChannel();
+    message.channel.send = jest.fn(msg=> mockMessage(msg));
+    message.channel.bulkDelete = jest.fn(_number => {
+        return {catch: jest.fn(_err => {return})}
+    });
 
     return message;
 }
+
+Discord.MessageEmbed = MessageEmbed;
 
 const language = client.languages.get('en');
 
