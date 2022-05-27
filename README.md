@@ -7,8 +7,4 @@ If you want to invite the bot :
 
 for dev : https://discord.com/oauth2/authorize?client_id=970388327461183558&permissions=1237222681713&scope=bot
 
-To get env var as secret :
-
-cat .env.prod | base64 -w 0 > prod.txt
-
 ## TODO LIST
