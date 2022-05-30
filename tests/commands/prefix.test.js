@@ -14,17 +14,18 @@ describe("Prefix Command", () => {
 
     it ("should return help", () => {
         prefixCommand.execute(message, [], Discord, client, guildConfig, language);
-        expect(message.reply).toHaveBeenCalledWith("You can't use the `prefix` command without arguments !\n`prefix` command usage : `<prefix>prefix <newPrefix>` where <newPrefix> is the prefix that will be used to call bot's commands");
+        expect(message.reply).toHaveBeenCalledWith(`${language.prefix.noArg}\n${language.prefix.help}`);
     })
 
     it ("should return update success", async () => {
         await prefixCommand.execute(message, ['?'], Discord, client, guildConfig, language);
-        expect(message.reply).toHaveBeenCalledWith("The command prefix has changed : you can now call a command with `?`");
+        expect(message.reply).toHaveBeenCalledWith(language.prefix.update.replace('<prefix>', '?'));
         guildConfig.prefix = '!';
     })
 
     it ("should return update error", async () => {
-        await prefixCommand.execute(message, ['?', '$'], Discord, client, guildConfig, language);
-        expect(message.reply).toHaveBeenCalledWith("The prefix must be a one word string ! You tried to give the following one : `? $`");
+        const args = ['?', '$'];
+        await prefixCommand.execute(message, args, Discord, client, guildConfig, language);
+        expect(message.reply).toHaveBeenCalledWith(language.prefix.updateError.replace('<prefix>', args.join(' ')));
     })
 })

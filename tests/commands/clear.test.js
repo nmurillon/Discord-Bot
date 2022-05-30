@@ -14,18 +14,18 @@ describe("Clear Command", () => {
 
     it ("should return error no args", () => {
         clearCommand.execute(message, [], Discord, client, guildConfig, language);
-        expect(message.reply).toHaveBeenCalledWith("Please enter the amount of messages you want to clear, eg : !clear 5");
+        expect(message.reply).toHaveBeenCalledWith(language.clear.noArg);
     })
 
     it ("should return error arg is NaN", async () => {
         clearCommand.execute(message, ['?'], Discord, client, guildConfig, language);
-        expect(message.reply).toHaveBeenCalledWith("Please enter a number as an argument !");
+        expect(message.reply).toHaveBeenCalledWith(language.clear.nan);
     })
 
     it ("should return error if arg < 1 or arg > 100", async () => {
         clearCommand.execute(message, ['-1'], Discord, client, guildConfig, language);
-        expect(message.reply).toHaveBeenCalledWith("Sorry but you must at least delete one message !");
+        expect(message.reply).toHaveBeenCalledWith(language.clear.atLeastOne);
         clearCommand.execute(message, ['101'], Discord, client, guildConfig, language);
-        expect(message.reply).toHaveBeenCalledWith("Sorry but I can't clean more than 100 messages");
+        expect(message.reply).toHaveBeenCalledWith(language.clear.atMostHundred);
     })
 })
