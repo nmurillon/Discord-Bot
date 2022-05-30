@@ -5,7 +5,7 @@
 
     "clear": {
         "description": "Supprime un montant donné de message dans un salon textuel",
-        "help": "",
+        "help": "Utilisaton de la commande `clear` : `clear <amount>` où <amount> est le nombre de messages à supprimer.\n<amount> doit être compris entre 1 et 100",
         "atLeastOne": "Vous devez supprimer au moins un message !",
         "atMostHundred": "Désolé, je ne peux pas supprimer plus de 100 messages",
         "nan": "L'argument fournit doit être un nombre !",
@@ -13,8 +13,8 @@
     },
 
     "help": {
-        "description": "",
-        "help": "",
+        "description": "Affiche la liste des commandes disponibles",
+        "help": "Utiliser `<prefix>help <command>` pour afficher l'aide de la commande `<command>`\n\nTous les arguments des commandes seront entourés par <>",
         "embedTitle": "Liste des commandes disponibles",
         "embedDescription": "Utiliser `<prefix>help <command>` pour afficher l'aide de la commande `<command>`\n\n",
         "embedCommandTitle": "Aide de la commande `<command>`"
@@ -22,7 +22,7 @@
 
     "language": {
         "description": "Commande permettant de configurer la langue du bot",
-        "help": "",
+        "help": "Utilisaton de la commande `language` : `language <language>` où <language> est la langue dans laquelle le bot doit répondre.\nPour voir l'ensemble des langages disponibles, utiliser cette commande sans argument ",
         "current": "Le bot répond en français !",
         "notSupported": "**<language>** n'est pas un langage supporté. Voici la liste des langages supportés actuellement.\n<list>",
         "updated": "La langue du bot a été changée !"
@@ -30,7 +30,7 @@
 
     "ping": {
         "description": "Envoie d'un ping au bot. Il répond pong",
-        "help": ""
+        "help": "Cette commande ne prend pas d'argument, il s'agit de la commande de base pour vérifier que le bot est en ligne"
     },
 
     "prefix": {
@@ -43,7 +43,7 @@
 
     "reactionrole": {
         "description": "Gère les rôles des utilisateurs après réactions sur un message donné",
-        "help": "",
+        "help": "Utilisation de la commande `reactionrole`: reactionrole [--channel <channel>] [--role <role-name> <emoji>]\nLes sous commandes (entre crochets) sont optionnelles. Utilisée sans argument, cette commande permettra d'afficher le message à partir duquel les utilisateurs pourront réagir pour obtenir leur rôle.\n\nLa sous-commande --channel permet de définir dans quel channel le bot écoutera les réactions aux messages afin d'attribuer les rôles. Si aucun argument n'est précisé pour cette sous-commande, alors le bot indiquera dans quel channel (s'il y en a un qui a été configuré au préalable) il écoute actuellement les réactions aux messages.\n\nLa sous-commande --role permet de configurer les rôles que le bot pourra attribuer. Sans argument, cette sous-commande retourne la liste des rôles déjà attribuables.\nPour ajouter un rôle attribuable grâce à cette sous-commande, il faut préciser le nom du rôle et l'émoji à utiliser. Par exemple, si vous souhaitez que le rôle 'Test' soit attribuable grâce à l'émoji :partying_face:, alors il faudra utiliser la commande comme suit : `reactionrole --role test :partying_face:`\n\nÀ noter qu'il est possible de configurer plusieurs rôles en une seule commande (Exemple : `reactionrole --role test :partying_face: test2 :eyes:`)\n\n**Remarque** : Si un rôle a des espaces dans son nom, il faudra les remplacer par _. Par exemple, pour ajouter le rôle 'Test Role', on utilisera `reactionrole --role test_role :partying_face:`\n\n**Attention** : Si vous combinez l'utilisation des sous-commandes, assurez-vous que --role soit utilisée en dernier",
         "embedTitle": "Choisissez votre rôle",
         "embedDescription": "Choisir un rôle vous permet d'avoir accès aux bons salons !\n\n",
         "noRoleChannel": "Il n'y a aucun salon configuré pour le moment",
@@ -53,6 +53,7 @@
         "noAssignableRole": "Aucun rôle ne peut être attribué par le bot actuellement",
         "embedTitleAssignableRole": "Liste des rôles que le bot peut attribuer",
         "embedDescriptionAssignableRole": "Le bot peut attribuer les rôles suivants :\n",
-        "roleAssignArgError": "Attention ! Vous devez fournir le nom du role puis l'émoji qui permettra d'attribuer ce rôle."
+        "roleAssignArgError": "Attention ! Vous devez fournir le nom du role puis l'émoji qui permettra d'attribuer ce rôle.",
+        "emojiError": "Impossible d'utiliser le(s) emoji(s) suivant(s) : `<emojis>`"
     }   
 }
