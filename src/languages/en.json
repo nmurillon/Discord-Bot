@@ -1,7 +1,9 @@
 {
-    "commandExecutionError": "There was an error executing this command",
-    "commandNotFound": "The command `<command>` does not exist",
-    "missingPermissions": "Missing permissions: `<permissions>`",
+    "baseErrors": {
+        "commandExecutionError": "There was an error executing this command",
+        "commandNotFound": "The command `<command>` does not exist",
+        "missingPermissions": "Missing permissions: `<permissions>`"
+    },
 
     "clear": {
         "description": "Clear an amount of messages from a channel",

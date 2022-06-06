@@ -1,8 +1,11 @@
-const { Guild } = require('discord.js');
-const guildProfileModel = require('../../models/guildConfigSchema')
+import { Guild } from "discord.js";
 
-module.exports = async (_client, _Discord, guild) => {
-    let guildConfig;
+import { Bot } from "../../models/bot";
+
+import guildProfileModel, { IGuildConfig } from '../../models/guildConfigSchema';
+
+export default async (_bot: Bot, guild: Guild) => {
+    let guildConfig: null|IGuildConfig;
     try {
         guildConfig = await guildProfileModel.findOne({ guildID: guild.id });
         if (!guildConfig) {
@@ -10,7 +13,7 @@ module.exports = async (_client, _Discord, guild) => {
                 guildID: guild.id
             })
 
-            await guildConfig.save();
+            await guildConfig.save().catch(console.error);
         }
     } catch (err) {
         console.log(`An error occured while saving the guild profile : ${err}`);

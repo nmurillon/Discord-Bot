@@ -2,10 +2,10 @@
   "name": "discord-bot",
   "version": "0.0.1",
   "description": "Bot for giving role to users",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "start": "node --trace-deprecation -r dotenv/config index.js dotenv_config_path=.env.prod",
-    "devStart": "nodemon --trace-deprecation -r dotenv/config index.js dotenv_config_path=.env.dev",
+    "devStart": "nodemon -r dotenv/config -r tsconfig-paths/register index.ts dotenv_config_path=.env.dev",
     "test": "jest"
   },
   "repository": {
@@ -23,10 +23,17 @@
     "dotenv": "^16.0.0",
     "express": "^4.18.1",
     "fs": "^0.0.1-security",
+    "module-alias": "^2.2.2",
     "mongoose": "^6.2.7"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/node": "^17.0.37",
     "jest": "^27.5.1",
-    "nodemon": "^2.0.16"
+    "nodemon": "^2.0.16",
+    "ts-node": "^10.8.0",
+    "tsconfig-paths": "^4.0.0",
+    "typescript": "^4.7.2"
   }
 }
