@@ -1,13 +1,13 @@
 import { ColorResolvable, Message, MessageEmbed, PermissionString, TextChannel } from 'discord.js';
 
 import { Bot } from '../../models/bot';
-import guildConfigModel, { IGuildConfig } from '../../models/guildConfigSchema';
+import { GuildConfigModel, IGuildConfig } from '../../models/guildConfigSchema';
 
 export default async (bot: Bot, message: Message) => {
-  let guildConfig: null|IGuildConfig = new guildConfigModel();
+  let guildConfig: null|IGuildConfig = new GuildConfigModel();
 
   try {
-    guildConfig = await guildConfigModel.findOne({ guildID: message.guildId});
+    guildConfig = await GuildConfigModel.findOne({ guildID: message.guildId}).exec();
   } catch (err) {
     console.error(`Error while retrieving guild configuration : ${err}`);
   }

@@ -16,6 +16,4 @@ const guildConfigSchema = new Schema({
     roleAssign: { type: Map, of: String, default: new Map<string, string>() }
 })
 
-const GuildConfig = model<IGuildConfig>('guildConfigModels', guildConfigSchema);
-
-export default GuildConfig;
+export const GuildConfigModel = model<IGuildConfig>('guildConfigModels', guildConfigSchema);
