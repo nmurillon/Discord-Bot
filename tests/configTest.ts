@@ -1,9 +1,10 @@
-import { GuildChannelManager, Message, TextChannel, Client, Intents, User, Guild, GuildMember, Collection } from 'discord.js';
+import { MockGuild, MockGuildMember, MockMessage, MockTextChannel, MockUser, MockClient } from './discordjsmocks';
+import { Client, Collection, Intents, Message } from 'discord.js';
 jest.mock('discord.js');
 
 const { Permissions } = jest.requireActual('discord.js');
+import mongoose, { Query } from 'mongoose';
 jest.mock('mongoose'); 
-import mongoose from 'mongoose';
 
 function mockExpress() {
   return {
@@ -16,13 +17,15 @@ jest.mock('express', () => {
   return mockExpress;
 });
 
-import guildConfigModel, { IGuildConfig } from '../src/models/guildConfigSchema';
+import { GuildConfigModel, IGuildConfig } from '../src/models/guildConfigSchema';
 import { Bot } from '../src/models/bot';
 import { Language } from '../src/models/language';
 
 type Mutable<Type> = {
   -readonly [Key in keyof Type]: Type[Key];
 };
+
+// const MutableMockMessage = MockMessage as Mutable<typeof MockMessage>;
 
 export default class ConfigTest {
   bot: Bot;
@@ -44,15 +47,18 @@ export default class ConfigTest {
       partials: ['MESSAGE', 'CHANNEL', 'REACTION']
     });
 
-    mongoose.connect = jest.fn().mockImplementation((_srv: string) => Promise.resolve());
+    mongoose.connect = jest.fn().mockImplementation(() => Promise.resolve());
+
     this.guildConfig = {
       guildID: '',
       prefix: '!',
       language: 'en',
       roleChannel: '',
     } as IGuildConfig;
-    
-    jest.spyOn(guildConfigModel, 'findOne').mockResolvedValue(Promise.resolve(this.guildConfig));
+
+    let mockQuery = new Query();
+    mockQuery.exec = jest.fn().mockResolvedValue(Promise.resolve(this.guildConfig))
+    GuildConfigModel.findOne = jest.fn().mockReturnValue(mockQuery);
 
     this.bot = new Bot(client);
     this.bot.init();
@@ -60,34 +66,76 @@ export default class ConfigTest {
   }
 
   mockMessage(content: string = '', perms = [Permissions.FLAGS.MANAGE_MESSAGES, Permissions.FLAGS.MANAGE_GUILD, Permissions.FLAGS.MANAGE_ROLES]): Message {
-    const guild = new (Guild as jest.Mock<Guild>)();
-    guild.id = '0';
+    let discordClient = new MockClient();
+    let guild = new MockGuild(discordClient, {
+      id: '0',
+    });
+    let user = new MockUser(discordClient, {
+      id: '0',
+    });
+    let member = new MockGuildMember(
+      discordClient,
+      { id: '0', user: { id: user.id } },
+      guild
+    );
 
-    const message = new (Message as unknown as jest.Mock<Mutable<Message>>)();
-    message.content = content;
-    message.author = new (User as jest.Mock<User>)();
-    message.author.bot = false;
-    message.guildId = '0';
-    
-    message.guild = guild;
-    message.guild.id = '0';
-    (message.guild.channels as any) = new (GuildChannelManager as unknown as jest.Mock<Mutable<GuildChannelManager>>)();
-    (message.guild.channels.cache as any) = jest.fn(() => 'get-role');
+    member.permissionsIn = jest.fn(_channel => {
+      const permissions = new Permissions();
+      perms.forEach(p => permissions.add(p))
+      return permissions;
+  });
+    // let role = new MockRole(
+    //   discordClient,
+    //   { id: '0' },
+    //   guild
+    // );
 
-    message.member = new (GuildMember as unknown as jest.Mock<Mutable<GuildMember>>)();
-
-    message.member.permissionsIn = jest.fn(_channel => {
-        const permissions = new Permissions();
-        perms.forEach(p => permissions.add(p))
-        return permissions;
+    let textChannel = new MockTextChannel(new MockGuild(discordClient), {
+      client: discordClient,
+      guild: new MockGuild(discordClient),
+      id: "channel-id",
     });
 
-    (message.channel as any) = new (TextChannel as unknown as jest.Mock<Mutable<TextChannel>>)();
-    message.channel.send = jest.fn((msg: string)=> Promise.resolve(this.mockMessage(msg)));
-    (message.channel as TextChannel).bulkDelete = jest.fn(_number => {
+    textChannel.send = jest.fn((msg: string)=> Promise.resolve(this.mockMessage(msg)));
+    textChannel.bulkDelete = jest.fn(_number => {
         return Promise.resolve(new Collection<string, Message<boolean>>());
     });
 
-    return message as Message;
+    let messageData = new RawMessageData()
+
+    let message: Mutable<Message> = {
+      client: discordClient
+    };
+
+
+    // let guild = new MockGuild();
+    // guild.id = '0';
+
+    //let message = new MockMessage();
+    message.content = content;
+    message.author = new MockUser();
+    message.author.bot = false;
+    // message.guildId = '0';
+    
+    // message.guild = guild;
+    // message.guild.id = '0';
+    // message.guild.channels = new MockGuildChannelManager();
+    // message.guild.channels.cache = jest.fn(() => 'get-role');
+
+    // message.member = new MockGuildMember();
+
+    // message.member.permissionsIn = jest.fn(_channel => {
+    //     const permissions = new Permissions();
+    //     perms.forEach(p => permissions.add(p))
+    //     return permissions;
+    // });
+
+    message.channel = textChannel;
+    // message.channel.send = jest.fn((msg: string)=> Promise.resolve(this.mockMessage(msg)));
+    // (message.channel as unknown as (typeof MockTextChannel)).bulkDelete = jest.fn(_number => {
+    //     return Promise.resolve(new Collection<string, Message<boolean>>());
+    // });
+
+    return message;
   }
 }
