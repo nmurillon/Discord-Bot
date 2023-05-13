@@ -7,7 +7,7 @@ export default async (bot: Bot, message: Message) => {
   let guildConfig: null|IGuildConfig = new GuildConfigModel();
 
   try {
-    guildConfig = await GuildConfigModel.findOne({ guildID: message.guildId}).exec();
+    guildConfig = await GuildConfigModel.findOne({ guildID: message.guildId});
   } catch (err) {
     console.error(`Error while retrieving guild configuration : ${err}`);
   }
