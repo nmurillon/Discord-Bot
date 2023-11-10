@@ -1,7 +1,6 @@
-import mongoose from 'mongoose';
-import  { GuildConfigModel, IGuildConfig } from '@models/guildConfigSchema';
-jest.mock('@models/guildConfigSchema')
-
+const mockingoose = require('mockingoose');
+import { GuildConfigModel } from '@models/guildConfigSchema';
+import { guildConfig } from './mocks';
 
 /// Mock for express
 function mockExpress() {
@@ -16,12 +15,5 @@ jest.mock('express', () => {
 });
 
 /// Mocking Mongoose
-const guildConfig =  {
-    guildID: '',
-    prefix: '!',
-    language: 'en',
-    roleChannel: '',
-} as IGuildConfig;
-
-mongoose.connect = jest.fn().mockImplementation(() => Promise.resolve());
-jest.spyOn(GuildConfigModel, 'findOne').mockResolvedValue(Promise.resolve(guildConfig));
+mockingoose(GuildConfigModel).toReturn(guildConfig, 'findOne');
+mockingoose(GuildConfigModel).toReturn(guildConfig, 'save');

@@ -10,5 +10,5 @@ export interface Command {
   description: string;
   permissions: string[];
   getHelp(guildConfig: IGuildConfig, language: Language): string;
-  execute(message: Message, args: string[], bot: Bot, guildConfig: IGuildConfig, language: Object): Promise<void|Message>;
+  execute(message: Message, args: string[], bot: Bot, guildConfig: IGuildConfig, language: Language): Promise<void|Message>;
 }

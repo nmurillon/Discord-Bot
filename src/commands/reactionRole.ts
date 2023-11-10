@@ -65,7 +65,7 @@ export default class ReactionRoleCommand implements Command {
 			await guildConfig.save();
 			return message.channel.send(language.reactionrole.roleChannelUpdate.replace('<channel>', channel.toString()));
 		} 
-		
+
 		message.reply(language.reactionrole.roleChannelError.replace('<channel>', args[0]));
 	}
 
